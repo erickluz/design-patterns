@@ -1,27 +1,29 @@
 package org.erick.strategy;
 
+import org.erick.factory.RemoteFileTransporterFactory;
+
 public class MainStrategyApp {
 	
 	public static void main(String [] args) {
-        Transmitter transmitterChosen = UtilTransmission.getUserChoiceTransmitter();
-        Transmission transmitter;
-        switch (transmitterChosen) {
+        Transporter transporterChosen = RemoteFileTransporterFactory.getUserChoiceTransmitter();
+        FileTransporter transporter;
+        switch (transporterChosen) {
         	case GOOGLE_DRIVE: {
-        		transmitter = new GoogleDrive();
-        		transmitter.sendFile(UtilTransmission.TX_SOURCE, UtilTransmission.TX_DESTINATION);
-        		transmitter.receiveFile(UtilTransmission.RX_DESTINATION, UtilTransmission.RX_SOURCE);
+        		transporter = new GoogleDrive();
+        		transporter.copy(UtilFileTransporter.TX_SOURCE, UtilFileTransporter.TX_DESTINATION);
+        		transporter.move(UtilFileTransporter.RX_DESTINATION, UtilFileTransporter.RX_SOURCE);
         		break;
         	}
         	case SCP: {
-        		transmitter = new SCP();
-        		transmitter.sendFile(UtilTransmission.TX_SOURCE, UtilTransmission.TX_DESTINATION);
-        		transmitter.receiveFile(UtilTransmission.RX_DESTINATION, UtilTransmission.RX_SOURCE);	
+        		transporter = new SCP();
+        		transporter.copy(UtilFileTransporter.TX_SOURCE, UtilFileTransporter.TX_DESTINATION);
+        		transporter.move(UtilFileTransporter.RX_DESTINATION, UtilFileTransporter.RX_SOURCE);	
         		break;
         	}
         	case SFTP: {
-        		transmitter = new SFTP();
-        		transmitter.sendFile(UtilTransmission.TX_SOURCE, UtilTransmission.TX_DESTINATION);
-        		transmitter.receiveFile(UtilTransmission.RX_DESTINATION, UtilTransmission.RX_SOURCE);
+        		transporter = new SFTP();
+        		transporter.copy(UtilFileTransporter.TX_SOURCE, UtilFileTransporter.TX_DESTINATION);
+        		transporter.move(UtilFileTransporter.RX_DESTINATION, UtilFileTransporter.RX_SOURCE);
         		break;
         	}
         	default: System.out.println("Invalid choice");

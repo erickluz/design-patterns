@@ -1,16 +1,14 @@
 package org.erick.factory;
 
-import org.erick.strategy.Transmission;
-import org.erick.strategy.Transmitter;
-import org.erick.strategy.UtilTransmission;
+import org.erick.strategy.FileTransporter;
+import org.erick.strategy.UtilFileTransporter;
 
 public class MainFactoryApp {
 	
 	public static void main(String [] args) {
-		Transmitter transmitter = UtilTransmission.getUserChoiceTransmitter();
-		Transmission transmission = TransmissionFactory.createTransmission(transmitter);
-		transmission.sendFile(UtilTransmission.TX_SOURCE, UtilTransmission.TX_DESTINATION);
-		transmission.receiveFile(UtilTransmission.RX_DESTINATION, UtilTransmission.RX_SOURCE);
+		FileTransporter transmission = RemoteFileTransporterFactory.createTransporter();
+		transmission.copy(UtilFileTransporter.TX_SOURCE, UtilFileTransporter.TX_DESTINATION);
+		transmission.move(UtilFileTransporter.RX_DESTINATION, UtilFileTransporter.RX_SOURCE);
 	}
 	
 }

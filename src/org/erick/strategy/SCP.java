@@ -1,15 +1,15 @@
 package org.erick.strategy;
 
-public class SCP implements Transmission {
+public class SCP implements FileTransporter {
 
 	@Override
-	public void sendFile(String sourceFileDirectory, String fileDestination) {
+	public void copy(String sourceFileDirectory, String fileDestination) {
 		System.out.println("Sending the file to SCP Server");
 		System.out.println("File Sent!");
 	}
 
 	@Override
-	public void receiveFile(String downloadDirectory, String remoteDirectoryFile) {
+	public void move(String sourceFileDirectory, String fileDestination) {
 		System.out.println("Receiving the file from SCP Server");
 		System.out.println("File Received!");
 	}
