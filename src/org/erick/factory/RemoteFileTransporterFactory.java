@@ -1,19 +1,20 @@
 package org.erick.factory;
 
-import org.erick.strategy.GoogleDrive;
-import org.erick.strategy.SCP;
-import org.erick.strategy.SFTP;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import org.erick.abstractfactory.FileTransporterFactory;
 import org.erick.strategy.FileTransporter;
 import org.erick.strategy.Transporter;
+import org.erick.strategy.remote.GoogleDrive;
+import org.erick.strategy.remote.SCP;
+import org.erick.strategy.remote.SFTP;
 
-public class RemoteFileTransporterFactory {
+public class RemoteFileTransporterFactory implements FileTransporterFactory {
 
-	public static FileTransporter createTransporter() {
-		Transporter selectedTransporter = getUserChoiceTransmitter();
+	@Override
+	public FileTransporter createTransporter() {
+		Transporter selectedTransporter = getUserChoiceTransporter();
 		FileTransporter transporter;
         switch (selectedTransporter) {
         	case GOOGLE_DRIVE: {
@@ -37,9 +38,9 @@ public class RemoteFileTransporterFactory {
 	
 	
 	
-	public static Transporter getUserChoiceTransmitter() {
-		System.out.println("Please choose one of bellow Transmitters");
-		Transporter.getAllValues().forEach(transmitter -> System.out.println(transmitter.getId() + " - " + transmitter.getDescription()));
+	public static Transporter getUserChoiceTransporter() {
+		System.out.println("Please choose one of bellow Transporters");
+		Transporter.getAllRemoteTransporters().forEach(transmitter -> System.out.println(transmitter.getId() + " - " + transmitter.getDescription()));
 		BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 		Transporter choice = null;
         try {

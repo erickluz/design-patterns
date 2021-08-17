@@ -1,4 +1,6 @@
-package org.erick.strategy;
+package org.erick.strategy.remote;
+
+import org.erick.strategy.FileTransporter;
 
 public class SFTP implements FileTransporter {
 

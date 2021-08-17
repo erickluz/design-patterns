@@ -1,11 +1,14 @@
 package org.erick.strategy;
 
 import org.erick.factory.RemoteFileTransporterFactory;
+import org.erick.strategy.remote.GoogleDrive;
+import org.erick.strategy.remote.SCP;
+import org.erick.strategy.remote.SFTP;
 
 public class MainStrategyApp {
 	
 	public static void main(String [] args) {
-        Transporter transporterChosen = RemoteFileTransporterFactory.getUserChoiceTransmitter();
+        Transporter transporterChosen = RemoteFileTransporterFactory.getUserChoiceTransporter();
         FileTransporter transporter;
         switch (transporterChosen) {
         	case GOOGLE_DRIVE: {
