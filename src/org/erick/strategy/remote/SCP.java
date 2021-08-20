@@ -4,6 +4,16 @@ import org.erick.strategy.FileTransporter;
 
 public class SCP implements FileTransporter {
 
+	public String description;
+
+	public SCP() {
+
+	}
+
+	public SCP(SCP scp) {
+		this.description = scp.description;
+	}
+	
 	@Override
 	public void copy(String sourceFileDirectory, String fileDestination) {
 		System.out.println("Sending the file to SCP Server");
@@ -14,6 +24,11 @@ public class SCP implements FileTransporter {
 	public void move(String sourceFileDirectory, String fileDestination) {
 		System.out.println("Receiving the file from SCP Server");
 		System.out.println("File Received!");
+	}
+	
+	@Override
+	public FileTransporter clone() {
+		return new SCP(this);
 	}
 
 }

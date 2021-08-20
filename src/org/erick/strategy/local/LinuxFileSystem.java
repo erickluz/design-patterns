@@ -4,6 +4,16 @@ import org.erick.strategy.FileTransporter;
 
 public class LinuxFileSystem implements FileTransporter {
 
+	public String operationalSourceSystem;
+	
+	public LinuxFileSystem() {
+		
+	}
+	
+	public LinuxFileSystem(LinuxFileSystem linuxFileSystem) {
+		this.operationalSourceSystem = linuxFileSystem.operationalSourceSystem;
+	}
+	
 	@Override
 	public void copy(String sourceFileDirectory, String fileDestination) {
 		System.out.println("Linux has been started the process to copy file");
@@ -18,4 +28,9 @@ public class LinuxFileSystem implements FileTransporter {
 		System.out.println("Files moved successfully!");
 	}
 
+	@Override
+	public FileTransporter clone() {
+		return new LinuxFileSystem(this);
+	}
+	
 }

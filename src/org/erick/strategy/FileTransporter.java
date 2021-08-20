@@ -1,6 +1,8 @@
 package org.erick.strategy;
 
-public interface FileTransporter {
+import org.erick.prototype.FileTransporterPrototype;
+
+public interface FileTransporter extends FileTransporterPrototype {
 	/**
 	 * Send a file from source directory to destination directory on a remote machine
 	 * 
